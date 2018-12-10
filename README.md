@@ -1,3 +1,7 @@
+# WEB URL TO VIEW
+
+https://mighty-crag-84482.herokuapp.com/bars
+
 # BarBeerDrinker Demo Project
 
 This was a group project done in 3 parts: creating a database schema, generating synthetic data, and displaying this data in tables/
