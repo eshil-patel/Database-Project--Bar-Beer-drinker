@@ -1,0 +1,77 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+      <h1 class="display-4">Modifications</h1>
+     <p>
+       <b>Modifications MUST be done via the SQL Query Interface. Use the information below to do so.</b>
+       <br><br>
+       This page will provide you with query formats to use on the SQL Query Interface. 
+       <br>
+       These query formats will allow you to Insert, Delete, or Update any row in our database.
+       <br><br>
+       For <b>INSERT</b>, you should only be editting the values within VALUES(...). See example for details.
+       <br><br>
+       For <b>UPDATE</b> you can edit any of the values in a row. Take the Update example below and add or remove any fields you want to update.
+       <br><br>
+       If the query is succesful, the SQL Query Interface will print that out. E.g. "Succesful Insert".
+       <br>
+       If there is an error with syntax or your statement triggers our Event Condition Actions (ECAs), an error will print out.
+      </p>
+      <p class="bars">
+          <b>Example for Bars:</b>
+          <br>
+          <b>INSERT INTO</b> bars
+          (`barId`,
+          `barName`,
+          `license`,
+          `open`,
+          `close`,
+          `phone`,
+          `address`,
+          `city`,
+          `state`)
+          VALUES
+          (1000, 'exName', 'exLicense', '12:00', '13:00', '123456789', '10 Example St.', 'Trenton', 'NJ');
+          <br>
+          <br>
+          <b>DELETE FROM </b>bars
+          WHERE barId = 10;
+          <br><br>
+          <b>UPDATE</b> bars
+SET
+`barName` = 'exampleName',
+`license` = 'exampleLicense',
+WHERE `barId` = 0;
+        <br>
+        *You can add or remove column names if you wish to change how many columns you modify!*
+
+          
+         <br><br>
+         The statements above can be conducted on any of the tables below as long as they conform to the Relationship Schema.
+         <br>
+         Use this schema to insert, modify, or delete from any of our tables:
+         <br><br>
+      </p>
+         <p class="schema">
+          Relationship Schema 
+          <br>
+          drinkers[drinkerId,drinkerName,phone,address,city,state]
+          <br>
+          bars[barId,barName,license,address,city,phone,open,close,state]
+          <br>
+          frequents[barId,drinkerId]
+          <br>
+          items[itemId,itemName,type,price,manufacturer] 
+          <br>
+          likes[drinkerId,itemId] 
+          <br>
+          sells[barId,itemId,price]
+          <br>
+          transactions[transactionId,drinkerId,billId,itemId,price,barId]
+          <br>
+          bills[billId,tax,total,date,hour] 
+          <br>
+          taxRates[state,taxrate]
+          <br><br>
+      </p>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Drinkers Page</h1>
+    <p class="lead">A list of drinkers who frequent various bars and like various things</p>
+  </div>
+</div><div class="container">
+  <h2 class="text-center font-weight-light">Drinkers</h2>
+  <p-table [value]="drinker" [paginator]="true" [rows]="50">
+    <ng-template pTemplate="header">
+        <tr>
+          <th>DrinkerId</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Phone</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-drinker>
+        <tr>
+          <td>
+            <a routerLink="/drinker/{{ drinker.drinkerId }}">
+              {{ drinker.drinkerId }}
+            </a>
+          </td>
+          <td>{{ drinker.drinkerName }}</td>
+          <td>{{ drinker.address }}</td>
+          <td>{{ drinker.phone }}</td>
+        </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<br><br>
+

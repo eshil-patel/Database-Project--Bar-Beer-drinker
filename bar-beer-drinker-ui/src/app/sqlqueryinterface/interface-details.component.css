@@ -1,0 +1,24 @@
+.querybox{
+    
+        width: 1000px;
+        font-size:14pt;
+        justify-content: center;
+    
+}
+
+.resultbox {
+    width: 1000px;
+        font-size:14pt;
+        justify-content: center;
+}
+.buttonholder{
+    text-align: center
+}
+
+.jumbotron{
+    text-align: center
+}
+
+.schema{
+    font-weight: bold
+}

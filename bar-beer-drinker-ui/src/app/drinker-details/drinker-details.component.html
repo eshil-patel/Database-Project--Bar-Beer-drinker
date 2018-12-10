@@ -1,0 +1,63 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+      <h1 class="display-4">{{drinkerinfo?.drinkerName }}</h1>
+  </div>
+</div>
+
+<div class="container">
+  <h2 class="text-center font-weight-light">Transaction Information</h2>
+  <br>
+  <p-table [value]="transInfo">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Bar</th>
+              <th>Item</th>
+              <th>Price</th>
+              <th>Time</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-trans>
+          <tr>
+              <td>{{ trans.barName }}</td>
+              <td>{{ trans.itemName }}</td>
+              <td>{{ trans.price | currency }}</td>
+              <td>{{ trans.hour }}</td>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>
+<br><br>
+
+<div class="container">
+        <br>
+        <div id="bargraph"></div>
+      </div>
+<br>
+<br>
+<br>
+
+
+<div class="container">
+    <br>
+    <div id='daygraph'></div>
+  </div>
+<br>
+<br>
+<br>
+
+<div class="container">
+    <br>
+    <div id='DayWeekgraph'></div>
+  </div>
+<br>
+<br>
+<br>
+
+<div class="container">
+    <br>
+    <div id='Weekgraph'></div>
+  </div>
+<br>
+<br>
+<br>
+

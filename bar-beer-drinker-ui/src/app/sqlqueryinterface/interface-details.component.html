@@ -1,0 +1,85 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+      <h1 class="display-4">SQL Query Interface</h1>
+     <p>
+       This interface allows you to execute a query on any of the schemas in our database. 
+       <br>
+       Please use the following relationship schema to do so:
+      </p>
+      <p class="schema">
+          Relationship Schema 
+          <br>
+          drinkers[drinkerId,drinkerName,phone,address,city,state]
+          <br>
+          bars[barId,barName,license,address,city,phone,open,close,state]
+          <br>
+          frequents[barId,drinkerId]
+          <br>
+          items[itemId,itemName,type,price,manufacturer] 
+          <br>
+          likes[drinkerId,itemId] 
+          <br>
+          sells[barId,itemId,price]
+          <br>
+          transactions[transactionId,drinkerId,billId,itemId,price,barId]
+          <br>
+          bills[billId,tax,total,date,hour] 
+          <br>
+          taxRates[state,taxrate]
+          <br><br>
+          **If you are still unsure of the column names, a simple select query will return the column names.**
+          <br>
+          Example: SELECT * FROM bars;
+          <br><br>
+          Verification Queries:
+          <br>
+          1. All Bills Issued While Bar is Open<br>
+
+select B.billId, hour, open, close 
+from DrinkingProject.bills B, DrinkingProject.bars B1,  DrinkingProject.transactions T 
+where T.billId=B.billId
+and B1.barId=T.barId
+and (CONVERT(substring_index(B.hour,':',1),unsigned integer) &gt;= CONVERT(substring_index(B1.close,':',1),unsigned integer) 
+ and CONVERT(substring_index(B.hour,':',1),unsigned integer) &lt; CONVERT(substring_index(B1.open,':',1),unsigned integer)) ;
+
+ <br><br>
+ 2. Drinkers frequent bars from their own state<br>
+
+select F.drinkerId from DrinkingProject.frequents  F , DrinkingProject.drinkers D, DrinkingProject.bars B where F.drinkerId=D.drinkerId and F.barId=B.barId and B.state != D.state
+<br><br>
+3. beers have the same relationship with all other beers <br>
+
+select S1.itemid, S2.itemid
+from DrinkingProject.sells S1, DrinkingProject.sells S2
+where (S1.barid=S2.barId and S1.itemid != S2.itemid and S1.price &gt;= S2.price 
+and exists(select * from DrinkingProject.sells Q1, DrinkingProject.sells Q2
+where Q1.barid=Q2.barId and Q1.price &lt; Q2.price and S1.itemid=Q1.itemid
+and S2.itemid=Q2.itemid))  
+
+<br><br>
+Trigger Example:
+<br>
+insert into sells(barid,itemId,price) values (1,2,20)
+</p>
+  </div>
+</div>
+
+<div class="buttonholder">
+    <form (ngSubmit)="onSubmit()">
+        <input type = "text" class="querybox" name="query"[(ngModel)]="user.query" placeholder="SELECT * FROM bars;">
+        <br><br>
+        <button type="submit" class="btn btn-primary ">Submit Query</button>
+      </form>
+      <br>
+      <p-table [value]="user.results" sortMode="multiple" sortField="price">
+        <ng-template pTemplate="header">
+        </ng-template>
+        <ng-template pTemplate="body" let-result>
+          <tr>
+            <td>{{ result }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+</div>
+
+<br><br>
