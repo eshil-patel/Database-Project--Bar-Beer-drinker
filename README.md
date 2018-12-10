@@ -1,5 +1,8 @@
 # BarBeerDrinker Demo Project
 
+This was a group project done in 3 parts: creating a database schema, generating synthetic data, and displaying this data in tables/
+charts with Node.js in an Angular framework, with Flask as the backend.
+
 This project is structured so that there are two folders - one for UI development using Angular and the other for the server-side application using Flask.
 
 ## Running a development version of the UI
